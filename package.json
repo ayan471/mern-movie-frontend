@@ -25,6 +25,7 @@
     "react-toastify": "^10.0.5",
     "sass": "^1.77.8",
     "swiper": "^8.4.5",
+    "vast-client": "^3.2.0",
     "video.js": "^8.17.3",
     "videojs-vast-vpaid": "^3.0.0-beta.8",
     "web-vitals": "^2.1.4",
