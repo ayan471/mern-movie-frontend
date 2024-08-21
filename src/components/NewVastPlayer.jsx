@@ -12,15 +12,23 @@ const NewVastPlayer = ({ adUrl }) => {
         const ad = client.getAd();
 
         if (ad) {
-          // Assuming you have a video element to play the ad
-          const videoElement = playerRef.current;
-          videoElement.src = ad.mediaFiles[0].url;
-          videoElement.play();
+          // Check if mediaFiles are present
+          if (ad.mediaFiles.length > 0) {
+            const videoElement = playerRef.current;
+            videoElement.src = ad.mediaFiles[0].url;
+
+            // Ensure video playback is initiated correctly
+            videoElement.play().catch((error) => {
+              console.error("Playback failed:", error);
+            });
+          } else {
+            console.error("No media files found in ad!");
+          }
         } else {
           console.error("No ad found!");
         }
       } catch (error) {
-        console.error("Failed to load ad", error);
+        console.error("Failed to load ad:", error);
       }
     };
 
@@ -35,6 +43,7 @@ const NewVastPlayer = ({ adUrl }) => {
         width="100%"
         height="auto"
         style={{ border: "none", overflow: "hidden" }}
+        onError={(e) => console.error("Video error:", e)}
       />
     </div>
   );
