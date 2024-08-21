@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import VASTClient from "vast-client";
 
-const VASTPlayer = ({ adUrl }) => {
+const NewVastPlayer = ({ adUrl }) => {
   const playerRef = useRef(null);
 
   useEffect(() => {
@@ -40,4 +40,4 @@ const VASTPlayer = ({ adUrl }) => {
   );
 };
 
-export default VASTPlayer;
+export default NewVastPlayer;

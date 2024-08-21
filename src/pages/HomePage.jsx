@@ -5,7 +5,8 @@ import { Box } from "@mui/material";
 import uiConfigs from "../configs/ui.configs";
 import Container from "../components/common/Container";
 import MediaSlide from "../components/common/MediaSlide";
-import VASTPlayer from "../components/VastPlayer";
+
+import NewVastPlayer from "../components/NewVastPlayer";
 
 const HomePage = () => {
   return (
@@ -45,7 +46,7 @@ const HomePage = () => {
         </Container>
 
         <Container header="Advertisement">
-          <VASTPlayer adUrl="https://servedby.revive-adserver.net/fc.php?script=apVideo:vast2&zoneid=21108" />
+          <NewVastPlayer adUrl="https://servedby.revive-adserver.net/fc.php?script=apVideo:vast2&zoneid=21108" />
         </Container>
       </Box>
     </>
