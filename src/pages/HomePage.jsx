@@ -45,7 +45,6 @@ const HomePage = () => {
           />
         </Container>
 
-        {/* Add the VideoPlayer component here to display the ad */}
         <Container header="Ad">
           <VideoPlayer />
         </Container>
