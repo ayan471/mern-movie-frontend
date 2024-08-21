@@ -80,18 +80,6 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
         },
       }}
     >
-      {/* Video Ad */}
-      <Box sx={{ width: "100%", height: "auto", marginBottom: 2 }}>
-        <video
-          width="100%"
-          height="auto"
-          autoPlay
-          controls
-          src="https://servedby.revive-adserver.net/fc.php?script=apVideo:vast2&zoneid=21108"
-          style={{ borderRadius: "10px" }}
-        />
-      </Box>
-
       <Swiper
         grabCursor={true}
         loop={true}
