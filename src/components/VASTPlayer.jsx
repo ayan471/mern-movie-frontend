@@ -17,7 +17,7 @@ const VASTPlayer = ({ adUrl }) => {
           videoElement.src = ad.mediaFiles[0].url;
           videoElement.play();
         } else {
-          console.error("No ad found");
+          console.error("No ad found!");
         }
       } catch (error) {
         console.error("Failed to load ad", error);
