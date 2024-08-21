@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const NewVastPlayer = ({ adUrl }) => {
+const NewVastPlayer = () => {
   const playerRef = useRef(null);
   const [videoSrc, setVideoSrc] = useState("");
 
   useEffect(() => {
     const fetchVASTAndLoadAd = async () => {
       try {
-        const response = await fetch(adUrl);
+        const response = await fetch("/proxy-vast"); // Use the proxy endpoint
         const vastXmlText = await response.text();
 
         // Parse the XML
@@ -28,7 +28,7 @@ const NewVastPlayer = ({ adUrl }) => {
     };
 
     fetchVASTAndLoadAd();
-  }, [adUrl]);
+  }, []);
 
   return (
     <div>
