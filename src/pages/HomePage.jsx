@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import uiConfigs from "../configs/ui.configs";
 import Container from "../components/common/Container";
 import MediaSlide from "../components/common/MediaSlide";
-import VASTPlayer from "../components/common/VASTPlayer"; // Import the VAST Player
+import VASTPlayer from "../components/VastPlayer";
 
 const HomePage = () => {
   return (
