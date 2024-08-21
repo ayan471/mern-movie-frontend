@@ -1,38 +1,33 @@
-import React, { useEffect, useRef } from "react";
-import VASTClient from "vast-client";
+import React, { useEffect, useRef, useState } from "react";
 
 const NewVastPlayer = ({ adUrl }) => {
   const playerRef = useRef(null);
+  const [videoSrc, setVideoSrc] = useState("");
 
   useEffect(() => {
-    const loadAd = async () => {
+    const fetchVASTAndLoadAd = async () => {
       try {
-        const client = new VASTClient();
-        await client.load(adUrl);
-        const ad = client.getAd();
+        const response = await fetch(adUrl);
+        const vastXmlText = await response.text();
 
-        if (ad) {
-          // Check if mediaFiles are present
-          if (ad.mediaFiles.length > 0) {
-            const videoElement = playerRef.current;
-            videoElement.src = ad.mediaFiles[0].url;
+        // Parse the XML
+        const parser = new DOMParser();
+        const vastXml = parser.parseFromString(vastXmlText, "text/xml");
 
-            // Ensure video playback is initiated correctly
-            videoElement.play().catch((error) => {
-              console.error("Playback failed:", error);
-            });
-          } else {
-            console.error("No media files found in ad!");
-          }
+        // Extract the media file URL from the VAST XML
+        const mediaFileElement = vastXml.querySelector("MediaFile");
+        if (mediaFileElement) {
+          const mediaFileUrl = mediaFileElement.textContent.trim();
+          setVideoSrc(mediaFileUrl); // Set the video source to the extracted media file URL
         } else {
-          console.error("No ad found!");
+          console.error("No MediaFile found in VAST XML");
         }
       } catch (error) {
-        console.error("Failed to load ad:", error);
+        console.error("Failed to fetch or parse VAST XML", error);
       }
     };
 
-    loadAd();
+    fetchVASTAndLoadAd();
   }, [adUrl]);
 
   return (
@@ -42,6 +37,7 @@ const NewVastPlayer = ({ adUrl }) => {
         controls
         width="100%"
         height="auto"
+        src={videoSrc} // Set the video source here
         style={{ border: "none", overflow: "hidden" }}
         onError={(e) => console.error("Video error:", e)}
       />
